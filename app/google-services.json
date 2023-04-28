@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "803943415086",
+    "project_id": "chat-app-fcacf",
+    "storage_bucket": "chat-app-fcacf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803943415086:android:eaa283ec943ab836650ebf",
+        "android_client_info": {
+          "package_name": "com.chanuka.samplereal_timechatapp_androidstudio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803943415086-3t4gntbftd26ltat6d15g5d1oq3ipqu0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3TxEJPD97Taugy7BA8EF4DS7wVPH1O8g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "803943415086-3t4gntbftd26ltat6d15g5d1oq3ipqu0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

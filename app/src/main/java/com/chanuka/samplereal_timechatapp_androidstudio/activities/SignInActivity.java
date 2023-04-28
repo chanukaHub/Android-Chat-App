@@ -1,11 +1,11 @@
 package com.chanuka.samplereal_timechatapp_androidstudio.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
-import com.chanuka.samplereal_timechatapp_androidstudio.R;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.chanuka.samplereal_timechatapp_androidstudio.databinding.ActivitySignInBinding;
 
 public class SignInActivity extends AppCompatActivity {
@@ -23,5 +23,5 @@ public class SignInActivity extends AppCompatActivity {
     private void setListeners() {
         binding.textCreateNewAccount.setOnClickListener(v ->
             startActivity(new Intent(getApplicationContext(), SignUpActivity.class)));
-        }
+    }
 }
