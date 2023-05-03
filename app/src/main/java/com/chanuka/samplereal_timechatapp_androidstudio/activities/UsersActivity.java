@@ -2,12 +2,14 @@ package com.chanuka.samplereal_timechatapp_androidstudio.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.chanuka.samplereal_timechatapp_androidstudio.R;
 import com.chanuka.samplereal_timechatapp_androidstudio.adapters.UsersAdapter;
 import com.chanuka.samplereal_timechatapp_androidstudio.databinding.ActivityUsersBinding;
+import com.chanuka.samplereal_timechatapp_androidstudio.listeners.UserListener;
 import com.chanuka.samplereal_timechatapp_androidstudio.models.User;
 import com.chanuka.samplereal_timechatapp_androidstudio.utilities.Constants;
 import com.chanuka.samplereal_timechatapp_androidstudio.utilities.PreferenceManager;
@@ -17,7 +19,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersActivity extends AppCompatActivity {
+public class UsersActivity extends AppCompatActivity implements UserListener {
     private ActivityUsersBinding binding;
     private PreferenceManager preferenceManager;
 
@@ -57,7 +59,7 @@ public class UsersActivity extends AppCompatActivity {
                             users.add(user);
                         }
                         if(users.size()>0){
-                            UsersAdapter userAdapter=new UsersAdapter(users);
+                            UsersAdapter userAdapter=new UsersAdapter(users, this);
                             binding.usersRecyclerView.setAdapter(userAdapter);
                             binding.usersRecyclerView.setVisibility(View.VISIBLE);
                         }else{
@@ -80,5 +82,13 @@ public class UsersActivity extends AppCompatActivity {
         }else{
             binding.progressBar.setVisibility(View.INVISIBLE);
         }
+    }
+
+    @Override
+    public void onUserClicked(User user) {
+        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+        intent.putExtra(Constants.KEY_USER, user);
+        startActivity(intent);
+        finish();
     }
 }

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chanuka.samplereal_timechatapp_androidstudio.R;
 import com.chanuka.samplereal_timechatapp_androidstudio.databinding.ItemContainerUserBinding;
+import com.chanuka.samplereal_timechatapp_androidstudio.listeners.UserListener;
 import com.chanuka.samplereal_timechatapp_androidstudio.models.User;
 
 import java.util.List;
@@ -18,8 +19,11 @@ import java.util.List;
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
     private final List<User> users;
 
-    public UsersAdapter(List<User> users) {
+    private final UserListener userListener;
+
+    public UsersAdapter(List<User> users, UserListener userListener) {
         this.users = users;
+        this.userListener = userListener;
     }
 
     @NonNull
@@ -61,6 +65,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
             }else {
                 binding.imageProfile.setImageResource(R.drawable.ic_baseline_person_24);
             }
+            binding.getRoot().setOnClickListener(v -> userListener.onUserClicked(user));
         }
     }
 
