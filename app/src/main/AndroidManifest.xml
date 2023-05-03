@@ -14,6 +14,9 @@
         android:theme="@style/Theme.SampleRealtimeChatAppAndroidStudio"
         tools:targetApi="31">
         <activity
+            android:name=".chatActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.UsersActivity"
             android:exported="false" />
         <activity
