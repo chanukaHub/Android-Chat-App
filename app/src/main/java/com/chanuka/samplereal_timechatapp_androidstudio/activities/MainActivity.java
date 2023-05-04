@@ -6,7 +6,9 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.chanuka.samplereal_timechatapp_androidstudio.adapters.RecentConversationsAdapter;
 import com.chanuka.samplereal_timechatapp_androidstudio.databinding.ActivityMainBinding;
+import com.chanuka.samplereal_timechatapp_androidstudio.models.ChatMessage;
 import com.chanuka.samplereal_timechatapp_androidstudio.utilities.Constants;
 import com.chanuka.samplereal_timechatapp_androidstudio.utilities.PreferenceManager;
 import com.google.firebase.firestore.DocumentReference;
@@ -14,11 +16,16 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private PreferenceManager preferenceManager;
+    private List<ChatMessage> conversations;
+    private RecentConversationsAdapter conversationsAdapter;
+    private FirebaseFirestore database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +33,17 @@ public class MainActivity extends AppCompatActivity {
         binding=ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         preferenceManager=new PreferenceManager(getApplicationContext());
+        init();
         loadUserDetails();
         getToken();
         setListeners();
+    }
+
+    private void init(){
+        conversations = new ArrayList<>();
+        conversationsAdapter = new RecentConversationsAdapter(conversations);
+        binding.conversationRecyclerView.setAdapter(conversationsAdapter);
+        database = FirebaseFirestore.getInstance();
     }
 
     private void setListeners(){
